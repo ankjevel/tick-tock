@@ -2,6 +2,7 @@
 extern crate serde_derive;
 #[macro_use]
 extern crate lazy_static;
+extern crate directories;
 extern crate gio;
 extern crate glib;
 extern crate gtk;
@@ -23,6 +24,8 @@ use lib::{
 use std::{cell::RefCell, env::args, rc::Rc, thread};
 
 pub fn main() {
+    let _ = file::setup_data_dir();
+
     glib::set_program_name(Some(&APP_NAME));
 
     let application = gtk::Application::new(Some(&PACKAGE), gio::ApplicationFlags::empty())

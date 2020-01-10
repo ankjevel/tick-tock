@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Tick Tock
+GenericName=Tick Tock
+Comment=
+Categories=GTK
+# Icon=com.github.ankjevel.tick-tock
+Exec=com.github.ankjevel.tick-tock
+Terminal=false
+Type=Application

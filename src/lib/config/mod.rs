@@ -2,6 +2,7 @@ pub mod tenkft;
 
 use self::tenkft::TenKFeet;
 use config::{Config as C, Environment, File};
+use directories::BaseDirs;
 use std::path::Path;
 
 #[derive(Debug, Deserialize, Serialize)]
@@ -21,6 +22,12 @@ fn merge_with_config_file(config: &mut C) {
     let config_path = Path::new("config.json");
     if config_path.exists() {
         config.merge(File::from(config_path)).unwrap();
+    } else if let Some(base_dirs) = BaseDirs::new() {
+        let mut path = base_dirs.config_dir().to_owned();
+        path.push("com.github.ankjevel.tick-tock.json");
+        if path.exists() {
+            config.merge(File::from(path)).unwrap();
+        }
     }
 }
 
